@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+    <title>Priority To-Do List</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <h1>Priority To-Do List</h1>
+    <input id="taskInput" />
+    <select id="selectPriority">
+      <option value="lowPriority">Low Priority</option>
+      <option value="mediumPriority">Medium Priority</option>
+      <option value="highPriority">High Priority</option>
+    </select>
+    <button id="addBtn">Add</button>
+    <p id="selectResult"></p>
+    <ul id="todoList"></ul>
+
+    <script>
+      // const taskInput = document.getElementById("taskInput");
+      // const addBtn = document.getElementById("addBtn");
+      // const selectPriority = document.getElementById("selectPriority");
+      // const selectResult = document.getElementById("selectResult");
+      // const todoList = document.getElementById("todoList");
+
+      // addBtn.addEventListener("click", function () {
+      //   const input = taskInput.value;
+      //   const selecTask = selectPriority.value;
+      //   // console.log(input);
+      //   selePriority = {
+      //     lowPriority: "Low Priority",
+      //     mediumPriority: "Medium Priority",
+      //     highPriority: "High Priority",
+      //   };
+
+      //   if (selecTask == selePriority.lowPriority) {
+      //     selectResult.textContent = `${selePriority[selecTask]}`;
+      //   } else if (selecTask == selePriority.mediumPriority) {
+      //     selectResult.textContent = `${selePriority[selecTask]}`;
+      //   } else if ((selecTask = selePriority.highPriority)) {
+      //     selectResult.textContent = `${selePriority[selecTask]}`;
+      //   }
+      // });
+
+      const taskInput = document.getElementById("taskInput");
+      const addBtn = document.getElementById("addBtn");
+      const selectPriority = document.getElementById("selectPriority");
+      // const selectResult = document.getElementById("selectResult");
+      const todoList = document.getElementById("todoList");
+
+      addBtn.addEventListener("click", function () {
+        const input = taskInput.value;
+        const selecTask = selectPriority.value;
+
+        const priorityMap = {
+          lowPriority: "Low Priority",
+          mediumPriority: "Medium Priority",
+          highPriority: "High Priority",
+        };
+
+        const list = document.createElement("li");
+        list.innerHTML = `${input} (${priorityMap[selecTask]})`;
+        todoList.appendChild(list);
+
+        taskInput.value = "";
+
+        let priorityGrp = todoList.querySelector(`#${selecTask}`);
+        if (!priorityGrp) {
+          priorityGrp = document.createElement("div");
+          priorityGrp.id = selecTask;
+
+          const header = document.createElement("h3");
+          header.textContent = `${priorityMap[selecTask]}`;
+
+          priorityGrp.appendChild(header);
+
+          const taskList = document.createElement("ul");
+          priorityGrp.appendhild(taskList);
+
+          todoList.appendChild(priorityGrp);
+        }
+
+        const taskList = priorityGrp.querySelector("ul");
+        const taskItem = document.createElement("li");
+        taskItem.textContent = input;
+        taskList.appendChild(taskItem);
+
+        taskInput.value = "";
+
+        // selectResult.textContent = `${priorityMap[selecTask]}`;
+      });
+    </script>
+  </body>
+</html>
